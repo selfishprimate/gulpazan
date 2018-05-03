@@ -1,0 +1,31 @@
+/* The custom CSS codes comes here! */
+
+html,
+body{
+  position: relative;
+  min-height: 100%;
+}
+
+.main-container{
+
+}
+
+.main-header{
+  height: 70px;
+  background-color: rgb(200,200,200);
+}
+
+.main-footer{
+  height: 70px;
+  background-color: rgb(200,200,200);
+}
+
+.content{
+  padding: 20px;
+  background-color: rgb(235,235,235);
+}
+
+.sidebar{
+  padding: 20px;
+  background-color: rgb(240,240,240);
+}
