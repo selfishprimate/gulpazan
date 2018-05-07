@@ -18,21 +18,21 @@ var nunjucksRender = require('gulp-nunjucks-render'); // HTML templating için k
 // Nunjucks HTML Templating
 gulp.task('nunjucks', function() {
   // Gets .html and .nunjucks files in pages
-  return gulp.src('dev/pages/**/*.+(html|njk)')
+  return gulp.src('src/pages/**/*.+(html|njk)')
   // Renders template with nunjucks
   .pipe(nunjucksRender({
-      path: ['dev/templates']
+      path: ['src/templates']
     }))
-  // output files in dev folder
-  .pipe(gulp.dest('dev'))
+  // output files in src folder
+  .pipe(gulp.dest('src'))
 });
 
 // Sass Compile
 gulp.task('sass', function() {
-  return gulp.src('dev/assets/sass/**/*.scss')
+  return gulp.src('src/assets/sass/**/*.scss')
   .pipe(sass()) // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor.
   .pipe(autoprefixer({browsers: ['last 1 version', 'iOS 6'], cascade: false})) // CSS dosyasına prefixler ekleniyor...
-  .pipe(gulp.dest('dev/assets/css'))
+  .pipe(gulp.dest('src/assets/css'))
   .pipe(browserSync.reload({
     stream: true
   }))
@@ -40,7 +40,7 @@ gulp.task('sass', function() {
 
 // CSS Minify
 gulp.task('minify', function(){
-  gulp.src(['dev/assets/css/**/*.css'])
+  gulp.src(['src/assets/css/**/*.css'])
   .pipe(sourcemaps.init())
   .pipe(minifyCss())
   .pipe(sourcemaps.write())
@@ -51,14 +51,14 @@ gulp.task('minify', function(){
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'dev'
+      baseDir: 'src'
     },
   })
 });
 
 // gulp-useref ile farklı JavaScript ve CSS dosyaları birleştirilip sıkıştırılıyor.
 gulp.task('useref', function(){
-  return gulp.src('dev/*.html')
+  return gulp.src('src/*.html')
     .pipe(useref())
     // Sadece JavaScript dosyası ise minify et!
     .pipe(gulpIf('*.js', uglify()))
@@ -67,7 +67,7 @@ gulp.task('useref', function(){
 
 // Imajları optimize etmek ve taşımak için...
 gulp.task('images', function(){
-  return gulp.src('dev/assets/images/**/*.+(png|jpg|gif|svg)')
+  return gulp.src('src/assets/images/**/*.+(png|jpg|gif|svg)')
   .pipe(cache(imagemin({
     interlaced: true
   })))
@@ -76,7 +76,7 @@ gulp.task('images', function(){
 
 // Fontları taşımak için...
 gulp.task('fonts', function(){
-  return gulp.src('dev/assets/fonts/**/*')
+  return gulp.src('src/assets/fonts/**/*')
   .pipe(gulp.dest('dist/assets/fonts'))
 });
 
@@ -93,10 +93,10 @@ gulp.task('cache:clear', function (callback) {
 // Watching
 //gulp.watch('files-to-watch', ['task-to-run']);
 gulp.task('watch', ['browserSync', 'sass', 'nunjucks'], function(){
-  gulp.watch('dev/**/*.+(html|njk)', ['nunjucks']);
-  gulp.watch('dev/assets/sass/**/*.scss', ['sass']);
-  gulp.watch('dev/assets/js/**/*.js', browserSync.reload);
-  gulp.watch('dev/*.html', browserSync.reload);
+  gulp.watch('src/**/*.+(html|njk)', ['nunjucks']);
+  gulp.watch('src/assets/sass/**/*.scss', ['sass']);
+  gulp.watch('src/assets/js/**/*.js', browserSync.reload);
+  gulp.watch('src/*.html', browserSync.reload);
   // İzlemek istediğiniz diğer uglamalar.
 });
 
