@@ -100,7 +100,7 @@ gulp.task('cache:clear', function (callback) {
 
 // Watching
 //gulp.watch('files-to-watch', ['task-to-run']);
-gulp.task('watch', ['browserSync', 'sass', 'nunjucks'], function(){
+gulp.task('start', ['browserSync', 'sass', 'nunjucks'], function(){
   gulp.watch('src/**/*.+(html|njk)', ['nunjucks']);
   gulp.watch('src/assets/sass/**/*.scss', ['sass']);
   gulp.watch('src/assets/js/**/*.js', browserSync.reload);
