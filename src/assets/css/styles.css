@@ -6536,6 +6536,7 @@ body {
 
 .content {
   padding: 20px;
+  color: red !important;
   background-color: #ebebeb; }
 
 .sidebar {
