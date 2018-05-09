@@ -34,8 +34,10 @@ gulp.task('sass', function() {
   .pipe(sass()) // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor.
   // sass to css yaparken hata oluşursa log a basıp
   // watch taskın durmasını önlüyor
-  .on("error", function (err) {
-    gutil.log(gutil.colors.red("[Error]"), err.toString());
+  .on("error", function swallowError (error) {
+    console.log(error.toString())
+
+    this.emit('end')
   })
   .pipe(autoprefixer({browsers: ['last 1 version', 'iOS 6'], cascade: false})) // CSS dosyasına prefixler ekleniyor...
   .pipe(gulp.dest('src/assets/css'))
