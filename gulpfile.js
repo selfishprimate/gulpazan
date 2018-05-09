@@ -1,26 +1,26 @@
-var gulp = require('gulp'); //Gulp'ı çağırır.
-var sass = require('gulp-sass'); // gulp-sass pluginini çağırır.
-var browserSync = require('browser-sync').create(); //BrowserSync'i çağırır.
-var useref = require('gulp-useref'); //JavaScript ve CSS dosyalarını birleştirmek için kullanılan plugin.
+var gulp = require('gulp');
+var sass = require('gulp-sass'); // SASS compiler
+var browserSync = require('browser-sync').create(); // Browser synchronization for watch...
+var useref = require('gulp-useref'); // Combining and minifying the JavaScript and the CSS files...
 var uglify = require('gulp-uglify');
-var cssnano = require('gulp-cssnano'); // CSS Minifier
+var cssnano = require('gulp-cssnano'); // CSS minifier...
 var gulpIf = require('gulp-if');
-var imagemin = require('gulp-imagemin'); //Imaj optimizasyonu...
+var imagemin = require('gulp-imagemin'); // Image optimization...
 var cache = require('gulp-cache');
 var del = require('del');
 var gutil = require("gulp-util");
 var runSequence = require('run-sequence'); // Taskların çalışma önceliğini belirler...
-var autoprefixer = require('gulp-autoprefixer'); // CSS Autoprefixer
-var minifyCss = require('gulp-minify-css'); // CSS dosyasını minidy ediyor.
+var autoprefixer = require('gulp-autoprefixer'); // Adding vendor prefixes to the CSS files
+var minifyCss = require('gulp-minify-css'); // Minifying the CSS files
 var sourcemaps = require('gulp-sourcemaps'); // dist klasöründeki CSS çıktısına sourcemap ekliyor!
 var inject = require('gulp-inject');
 var nunjucksRender = require('gulp-nunjucks-render'); // HTML templating için kullanılıyor.
 
 // Nunjucks HTML Templating
 gulp.task('nunjucks', function() {
-  // Gets .html and .nunjucks files in pages
+  // Gets .html and .njk files in pages folder...
   return gulp.src('src/pages/**/*.+(html|njk)')
-  // Renders template with nunjucks
+  // Renders template folder with nunjucks...
   .pipe(nunjucksRender({
       path: ['src/templates']
     }))

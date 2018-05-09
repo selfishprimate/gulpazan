@@ -10,6 +10,12 @@ What prominent npm packages Gulpazan comes with when you install it...
 - Nunjucks: One of the most powerful templating languages for JavaScript.
 - Ionicons: The premium icon font for Ionic Framework.
 
-## Installation
+## How to install Gulpazan?
 
-Just clone the repository or download it. And then open the terminal window and type `npm install`. After the installation is finished type `gulp start` in the terminal window to run the project. Well, that's all! Easy, isn't it?
+Clone the repository by typing `git clone https://github.com/babilkuyusu/Gulpazan.git` command in your terminal window or [click here](https://github.com/babilkuyusu/Gulpazan/archive/master.zip) to download Gulpazan in to your local computer.
+
+Open your terminal window and type `npm install` command to install all the dependencies that Gulpazan needs.
+
+After the installation is finished type `gulp start` command and hit the enter to power up the project.
+
+Easy, isn't it?

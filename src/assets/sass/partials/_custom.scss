@@ -1,21 +1,56 @@
 /* The custom CSS codes comes here! */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html,
 body{
   position: relative;
   min-height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6{
+  font-family: $title-font;
+}
+
+p{
+  code{
+    background-color: floralwhite;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+}
+
+.motto{
+  font-family: $title-font;
+}
+
+.download-btn{
+  font-family: $title-font;
+  padding: 0px 5px;
+  background-color: floralwhite;
+  border-radius: 3px;
+}
+
 .main-container{}
 
 .main-header{
-  height: 70px;
+  min-height: 100px;
+  padding: 20px;
   background-color: rgb(200,200,200);
+  @include flex;
 }
 
 .main-footer{
-  height: 70px;
+  min-height: 100px;
+  padding: 20px;
   background-color: rgb(200,200,200);
+  @include flex;
 }
 
 .content{
@@ -24,6 +59,7 @@ body{
 }
 
 .sidebar{
+  @include flex;
   padding: 20px;
   background-color: rgb(240,240,240);
 }

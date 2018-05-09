@@ -6522,24 +6522,68 @@ a.text-dark:hover, a.text-dark:focus {
   /* Legacy iOS */ }
 
 /* The custom CSS codes comes here! */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
 html,
 body {
   position: relative;
   min-height: 100%; }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Suez One", sans-serif; }
+
+p code {
+  background-color: floralwhite;
+  padding: 2px 5px;
+  border-radius: 3px; }
+
+.motto {
+  font-family: "Suez One", sans-serif; }
+
+.download-btn {
+  font-family: "Suez One", sans-serif;
+  padding: 0px 5px;
+  background-color: floralwhite;
+  border-radius: 3px; }
+
 .main-header {
-  height: 70px;
-  background-color: #c8c8c8; }
+  min-height: 100px;
+  padding: 20px;
+  background-color: #c8c8c8;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center; }
 
 .main-footer {
-  height: 70px;
-  background-color: #c8c8c8; }
+  min-height: 100px;
+  padding: 20px;
+  background-color: #c8c8c8;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center; }
 
 .content {
   padding: 20px;
   background-color: #ebebeb; }
 
 .sidebar {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
   padding: 20px;
   background-color: #f0f0f0; }
 

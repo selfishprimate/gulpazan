@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-  <head>
-    <meta charset="utf-8">
-    <title>Gulpazan</title>
-
-    <link rel="stylesheet" href="assets/css/styles.css">
-
-  </head>
-
-  <body>
-
+{% include "partials/master-top.njk" %}
 
   <main class="main-container container">
     <div class="row">
 
-      <header class="main-header col-12">
-
-  <h2>Header</h2>
-
-</header>
-
+      {% include "partials/header.njk" %}
 
       <div class="content col-sm-8">
-        
+        {% block content %}
           <h2>What is Gulpazan?</h2>
           <p>Gulpazan is a Gulp starter template to build a fast and easy workflows. It comes with jQuery, Nunjucks, Bootstrap and Sass to make it super easy for you to create a better workflow.</p>
           <h4>What's included?</h4>
@@ -46,31 +29,18 @@
 
           <p class="motto">Easy, isn't it?</p>
 
-        
+        {% endblock %}
       </div>
 
       <aside class="sidebar col-sm-4">
-        
+        {% block sidebar %}
           <h2>Sidebar</h2>
-        
+        {% endblock %}
       </aside>
 
-      <footer class="main-footer col-12">
-  <h2>Footer</h2>
-</footer>
-
+      {% include "partials/footer.njk" %}
 
     </div><!-- .row -->
   </main><!-- .main-container -->
 
-
-<!--build:js assets/js/main.min.js -->
-  <script src="assets/js/jquery.js"></script>
-  <script src="assets/js/bootstrap.js"></script>
-  <script src="assets/js/custom.js"></script>
-<!-- endbuild -->
-
-</body>
-
-</html>
-
+{% include "partials/master-bottom.njk" %}
