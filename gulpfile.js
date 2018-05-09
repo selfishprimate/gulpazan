@@ -8,6 +8,7 @@ var gulpIf = require('gulp-if');
 var imagemin = require('gulp-imagemin'); //Imaj optimizasyonu...
 var cache = require('gulp-cache');
 var del = require('del');
+var gutil = require("gulp-util");
 var runSequence = require('run-sequence'); // Taskların çalışma önceliğini belirler...
 var autoprefixer = require('gulp-autoprefixer'); // CSS Autoprefixer
 var minifyCss = require('gulp-minify-css'); // CSS dosyasını minidy ediyor.
@@ -31,6 +32,11 @@ gulp.task('nunjucks', function() {
 gulp.task('sass', function() {
   return gulp.src('src/assets/sass/**/*.scss')
   .pipe(sass()) // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor.
+  // sass to css yaparken hata oluşursa log a basıp
+  // watch taskın durmasını önlüyor
+  .on("error", function (err) {
+    gutil.log(gutil.colors.red("[Error]"), err.toString());
+  })
   .pipe(autoprefixer({browsers: ['last 1 version', 'iOS 6'], cascade: false})) // CSS dosyasına prefixler ekleniyor...
   .pipe(gulp.dest('src/assets/css'))
   .pipe(browserSync.reload({
