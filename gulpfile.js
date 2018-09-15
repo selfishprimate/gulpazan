@@ -1,19 +1,11 @@
-var gulp = require('gulp');
+var gulp = require('gulp'); // Gulp çağırılıyor.
 var sass = require('gulp-sass'); // SASS compiler
 var browserSync = require('browser-sync').create(); // Browser synchronization for watch...
-var useref = require('gulp-useref'); // Combining and minifying the JavaScript and the CSS files...
-var uglify = require('gulp-uglify');
-var cssnano = require('gulp-cssnano'); // CSS minifier...
-var gulpIf = require('gulp-if');
-var imagemin = require('gulp-imagemin'); // Image optimization...
-var cache = require('gulp-cache');
-var del = require('del');
-var gutil = require("gulp-util");
+var cache = require('gulp-cache'); //C ache'i temizler.
+var del = require('del'); // Dist klasörünü temizlemek ve tamamen kaldırmak için kullanılır.
 var runSequence = require('run-sequence'); // Taskların çalışma önceliğini belirler...
 var autoprefixer = require('gulp-autoprefixer'); // Adding vendor prefixes to the CSS files
-var minifyCss = require('gulp-minify-css'); // Minifying the CSS files
 var sourcemaps = require('gulp-sourcemaps'); // dist klasöründeki CSS çıktısına sourcemap ekliyor!
-var inject = require('gulp-inject');
 var nunjucksRender = require('gulp-nunjucks-render'); // HTML templating için kullanılıyor.
 
 // Nunjucks HTML Templating
@@ -31,28 +23,18 @@ gulp.task('nunjucks', function() {
 // Sass Compile
 gulp.task('sass', function() {
   return gulp.src('src/assets/sass/**/*.scss')
-  .pipe(sass()) // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor.
-  // sass to css yaparken hata oluşursa log a basıp
-  // watch taskın durmasını önlüyor
-  .on("error", function swallowError (error) {
+  // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor. (nested, compact, expanded, compressed)
+  .pipe(sourcemaps.init())
+  .pipe(sass({outputStyle: 'expanded'})).on("error", function swallowError (error) {
     console.log(error.toString())
-
     this.emit('end')
   })
+  .pipe(sourcemaps.write())
   .pipe(autoprefixer({browsers: ['last 1 version', 'iOS 6'], cascade: false})) // CSS dosyasına prefixler ekleniyor...
   .pipe(gulp.dest('src/assets/css'))
   .pipe(browserSync.reload({
     stream: true
   }))
-});
-
-// CSS Minify
-gulp.task('minify', function(){
-  gulp.src(['src/assets/css/**/*.css'])
-  .pipe(sourcemaps.init())
-  .pipe(minifyCss())
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('dist/assets/css/'))
 });
 
 // BrowserSync'i çalıştırıyor.
@@ -64,28 +46,28 @@ gulp.task('browserSync', function() {
   })
 });
 
-// gulp-useref ile farklı JavaScript ve CSS dosyaları birleştirilip sıkıştırılıyor.
-gulp.task('useref', function(){
-  return gulp.src('src/*.html')
-    .pipe(useref())
-    // Sadece JavaScript dosyası ise minify et!
-    .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulp.dest('dist'))
-});
-
-// Imajları optimize etmek ve taşımak için...
+// Imajları dist klasörüne taşır.
 gulp.task('images', function(){
   return gulp.src('src/assets/images/**/*.+(png|jpg|gif|svg)')
-  .pipe(cache(imagemin({
-    interlaced: true
-  })))
   .pipe(gulp.dest('dist/assets/images'))
 });
 
-// Fontları taşımak için...
+// Fontları dist klasörüne taşır.
 gulp.task('fonts', function(){
   return gulp.src('src/assets/fonts/**/*')
   .pipe(gulp.dest('dist/assets/fonts'))
+});
+
+// CSS dosyalarını dist klasörüne taşır.
+gulp.task('css', function(){
+  return gulp.src('src/assets/css/**/*.css')
+    .pipe(gulp.dest('dist/assets/css/'));
+});
+
+// HTML dosyalarını dist klasörüne taşır.
+gulp.task('html', function(){
+  return gulp.src('src/*.html')
+  .pipe(gulp.dest('dist'))
 });
 
 // Dist klasörünü temizlemek, tamamen kaldırmak için...
@@ -111,7 +93,7 @@ gulp.task('start', ['browserSync', 'sass', 'nunjucks'], function(){
 // Tasklar, çalışma önceliğine göre sıraya konuluyor...
 gulp.task('build', function(callback) {
   runSequence('clean:dist',
-    ['sass', 'minify', 'useref', 'images', 'fonts'],
+    ['sass', 'css', 'images', 'fonts', 'html'],
     callback
   )
 });
