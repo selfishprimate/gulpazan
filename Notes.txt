@@ -1,4 +1,6 @@
 
+Important!
+
 1. Mac veya Linux sistemlerde npm install komutu yetki sorunları yüzünden düzgün çalışmıyorsa aşağıdaki komutu çalıştırın.
 
 sudo npm install --unsafe-perm=true --allow-root
