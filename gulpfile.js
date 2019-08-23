@@ -1,15 +1,15 @@
-var gulp = require('gulp'); // Gulp çağırılıyor.
-var sass = require('gulp-sass'); // SASS compiler
-var browserSync = require('browser-sync').create(); // Browser synchronization for watch...
-var cache = require('gulp-cache'); //C ache'i temizler.
-var del = require('del'); // Dist klasörünü temizlemek ve tamamen kaldırmak için kullanılır.
-var runSequence = require('run-sequence'); // Taskların çalışma önceliğini belirler...
-var autoprefixer = require('gulp-autoprefixer'); // Adding vendor prefixes to the CSS files
-var sourcemaps = require('gulp-sourcemaps'); // dist klasöründeki CSS çıktısına sourcemap ekliyor!
-var nunjucksRender = require('gulp-nunjucks-render'); // HTML templating için kullanılıyor.
-var babel = require('gulp-babel'); // ES6 code in, ES5 code out!
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var browserSync = require('browser-sync').create();
+var cache = require('gulp-cache');
+var del = require('del');
+var runSequence = require('run-sequence');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+var nunjucksRender = require('gulp-nunjucks-render');
+var babel = require('gulp-babel');
 
-// Babel, scripts.js dosyasındaki ES6 kodları ES5'e transpile ediyor ve babelified klasörüne atıyor!
+// Babel is transpiling the ES6 codes in "scripts.js" file to old JavaScript and moves it into the "babelified" folder
 gulp.task('babelify', () =>
   gulp.src('src/assets/js/scripts.js')
     .pipe(babel({
@@ -47,7 +47,7 @@ gulp.task('sass', function () {
     }))
 });
 
-// BrowserSync'i çalıştırıyor.
+// Runs the BrowserSync
 gulp.task('browserSync', function () {
   browserSync.init({
     server: {
@@ -57,25 +57,25 @@ gulp.task('browserSync', function () {
   })
 });
 
-// Imajları dist klasörüne taşır.
+// Moves all the images into the "dist" folder
 gulp.task('images', function () {
   return gulp.src('src/assets/images/**/*.+(png|jpg|gif|svg)')
     .pipe(gulp.dest('dist/assets/images'))
 });
 
-// Fontları dist klasörüne taşır.
+// Moves all the font files into the "dist" folder
 gulp.task('fonts', function () {
   return gulp.src('src/assets/fonts/**/*')
     .pipe(gulp.dest('dist/assets/fonts'))
 });
 
-// CSS dosyalarını dist klasörüne taşır.
+// Moves all the CSS files into the "dist" folder
 gulp.task('css', function () {
   return gulp.src('src/assets/css/**/*.css')
     .pipe(gulp.dest('dist/assets/css/'));
 });
 
-// Bootstrap related JavaScript files moves to the js folder 
+// Moves all the Bootstrap related JavaScript files into the js folder 
 gulp.task('bootstrapper', function () {
   return gulp.src([
     'node_modules/bootstrap/dist/js/bootstrap.js',
@@ -86,33 +86,33 @@ gulp.task('bootstrapper', function () {
     .pipe(browserSync.stream());
 });
 
-// Transpile edilmiş scripts.js dosyasını dist klasörüne taşır.
+// Moves the transpiled "script.js" file into the "dist" folder
 gulp.task('js', function () {
   return gulp.src([
-    // Burada sıralama çok önemlidir.
-    'src/assets/js/*.js', // İlk olarak tüm js dosyalarını taşır.
-    'src/assets/js/babelified/scripts.js' // İkinci olarak da transpile edilmiş scripts.js dosyasını orijinalin üzerine yazar!
+    // The ordering is very important here!
+    'src/assets/js/*.js', // Firstly, it moves all the js files
+    'src/assets/js/babelified/scripts.js' // Secondly, overwrite the "scripts.js" file with the transpiled one
   ])
     .pipe(gulp.dest('dist/assets/js/'));
 });
 
-// HTML dosyalarını dist klasörüne taşır.
+// Moves all the html files into the "dist" folder
 gulp.task('html', function () {
   return gulp.src('src/*.html')
     .pipe(gulp.dest('dist'))
 });
 
-// Dist klasörünü temizlemek, tamamen kaldırmak için...
+// Cleans the "dist" folder by removing 
 gulp.task('clean:dist', function () {
   return del.sync('dist');
 });
 
-// Cache'i temizler...
+// Cleans the cache
 gulp.task('cache:clear', function (callback) {
   return cache.clearAll(callback)
 })
 
-// Watching
+// Watches the file changes
 //gulp.watch('files-to-watch', ['task-to-run']);
 gulp.task('start', ['bootstrapper', 'browserSync', 'babelify', 'sass', 'nunjucks'], function () {
   gulp.watch('src/**/*.+(html|njk)', ['nunjucks']);
@@ -120,10 +120,10 @@ gulp.task('start', ['bootstrapper', 'browserSync', 'babelify', 'sass', 'nunjucks
   gulp.watch('src/assets/js/**/*.js', ['babelify']);
   gulp.watch('src/assets/js/**/*.js', browserSync.reload);
   gulp.watch('src/*.html', browserSync.reload);
-  // İzlemek istediğiniz diğer uglamalar.
+  // Put here all the other files that you want to be watched
 });
 
-// Tasklar, çalışma önceliğine göre sıraya konuluyor...
+// Tasks are queuing according to their working priority
 gulp.task('build', function (callback) {
   runSequence('clean:dist',
     ['bootstrapper', 'js', 'sass', 'css', 'images', 'fonts', 'html'],
