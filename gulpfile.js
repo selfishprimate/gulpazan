@@ -35,7 +35,10 @@ gulp.task('sass', function () {
   return gulp.src('src/assets/sass/**/*.scss')
     // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor. (nested, compact, expanded, compressed)
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' })).on("error", function swallowError(error) {
+    .pipe(sass({ 
+      outputStyle: 'expanded',
+      includePaths: ['./node_modules/susy/sass']
+    })).on("error", function swallowError(error) {
       console.log(error.toString())
       this.emit('end')
     })

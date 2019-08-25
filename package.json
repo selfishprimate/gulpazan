@@ -29,9 +29,9 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "browserslist": "^4.6.6",
-    "caniuse-lite": "^1.0.30000989",
+    "bourbon": "^6.0.0",
     "jquery": "^3.3.1",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "susy": "^3.0.5"
   }
 }
