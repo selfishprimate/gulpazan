@@ -13,7 +13,7 @@ What prominent npm packages Gulpazan comes with when you install it...
 
 ## How to install Gulpazan?
 
-Clone the repository by typing `git clone https://github.com/babilkuyusu/Gulpazan.git` command in your terminal window or [click here](https://github.com/babilkuyusu/Gulpazan/archive/master.zip) to download Gulpazan in to your local computer.
+Clone the repository by typing `git clone https://github.com/babilkuyusu/gulpazan.git` command in your terminal window or [click here](https://github.com/babilkuyusu/gulpazan/archive/master.zip) to download Gulpazan in to your local computer.
 
 Open your terminal window and type `npm install` command to install all the dependencies that Gulpazan needs.
 
