@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "bourbon": "^6.0.0",
+    "browserslist": "^4.6.6",
+    "caniuse-lite": "^1.0.30000989",
     "jquery": "^3.3.1",
     "popper.js": "^1.15.0"
   }

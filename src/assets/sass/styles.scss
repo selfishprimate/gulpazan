@@ -1,6 +1,3 @@
-@import "../../../node_modules/bourbon/core/bourbon";
-@import "susy";
-
 @import "partials/bootstrap";
 @import "partials/variables";
 @import "partials/mixins";
@@ -9,26 +6,3 @@
 @import "partials/custom";
 
 @import "ionicons/ionicons";
-
-#{$all-text-inputs}{
-    border: 1px solid green;
-}
-
-#{$all-text-inputs-focus},
-#{$all-text-inputs-hover},
-#{$all-text-inputs-active}{
-    border: 1px solid red;
-    outline: 0;
-}
-
-#{$all-buttons} {
-  background-color: red;
-  color: white;
-  border: 0;
-  &.outlined{
-      background-color: transparent;
-      border: 1px solid purple;
-      color: red;
-
-  }
-}
