@@ -30,13 +30,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bourbon": "^6.0.0",
-<<<<<<< HEAD
     "jquery": "^3.3.1",
-    "natives": "^1.1.6",
-=======
-    "jquery": "^3.4.0",
->>>>>>> 94fe66cf937bfc4e984e8b9a8a339ba94a95f575
-    "popper.js": "^1.15.0",
-    "susy": "^3.0.5"
+    "popper.js": "^1.15.0"
   }
 }

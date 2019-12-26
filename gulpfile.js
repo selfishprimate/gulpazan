@@ -8,7 +8,7 @@ var autoprefixer = require("gulp-autoprefixer");
 var sourcemaps = require("gulp-sourcemaps");
 var nunjucksRender = require("gulp-nunjucks-render");
 var babel = require("gulp-babel");
-// New changes.
+
 // Babel is transpiling the ES6 codes in "scripts.js" file to old JavaScript and moves it into the "babelified" folder.
 gulp.task("babelify", () =>
   gulp
