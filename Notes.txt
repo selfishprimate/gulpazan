@@ -1,10 +1,11 @@
 
-Important!
+Important Notes
 
-1. Mac veya Linux sistemlerde npm install komutu yetki sorunları yüzünden düzgün çalışmıyorsa aşağıdaki komutu çalıştırın.
+1. For Unix based systems like MacOs there can be some security issues when trying to install the dependencies. If so, please use the command below:
 
-sudo npm install --unsafe-perm=true --allow-root
+$ sudo npm install --unsafe-perm=true --allow-root
 
-2. node_modules klasörünü kaldırmak için aşağıdaki komutu kullanın (Not: node_modules klasörünün olduğu dizine girdiğinizden emin olun!):
 
-sudo rm -rf node_modules
+2. You can remove the node_modules folder by using the command below:
+
+$ sudo rm -rf node_modules

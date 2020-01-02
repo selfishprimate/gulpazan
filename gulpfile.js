@@ -94,6 +94,5 @@ function watch_files(done) {
   done()
 }
 
-
 exports.start = series(clear_cache, bootstrapper, browser_sync, sassify, nunjucks, watch_files);
 exports.build = series(clean_dist, bootstrapper, js, sassify, css, images, fonts, html);
