@@ -1,10 +1,8 @@
-const { series, src, dest, parallel, gulp } = require('gulp');
-
+const { series, src, dest, watch } = require('gulp');
 const nunjucksRender = require("gulp-nunjucks-render");
 const browserSync = require("browser-sync");
 const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
-const watcher = require("gulp-chokidar");
 const del = require('del');
 const cache = require("gulp-cache");
 
@@ -88,9 +86,9 @@ function clear_cache(done) {
 }
 
 function watch_files(done) {
-  watcher('src/**/*.njk', nunjucks)
-  watcher('src/assets/sass/**/*.scss', sassify)
-  watcher('src/**/*.html', browserSync.reload)
+  watch('src/**/*.njk', nunjucks)
+  watch('src/assets/sass/**/*.scss', sassify)
+  watch('src/**/*.html', browserSync.reload)
   done()
 }
 

@@ -1,0 +1,8 @@
+# Git directory
+.git
+
+# Dist folder
+dist
+
+# Dependency directory
+node_modules
