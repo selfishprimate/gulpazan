@@ -1,6 +1,6 @@
 {
-  "name": "Gulpazan",
-  "version": "1.0.0",
+  "name": "gulpazan",
+  "version": "2.0.0",
   "description": "The easiest workflow for frontend development.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "?.git"
+    "url": "https://github.com/babilkuyusu/gulpazan.git"
   },
   "author": "Halil İbrahim Çakıroğlu",
   "license": "ISC",
