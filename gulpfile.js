@@ -12,13 +12,13 @@ function nunjucks(done) {
     .pipe(nunjucksRender({
       path: ["src/templates"]
     }))
-    .pipe(dest("src"))
+    .pipe(dest("src/output"))
   done()
 }
 
 // Sass compiler
 function sassify(done) {
-  return src('src/assets/sass/**/*.scss')
+  return src('src/**/*.scss')
     .pipe(sourcemaps.init())
     // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor. (nested, compact, expanded, compressed)
     .pipe(sass({ outputStyle: 'expanded' })).on('error', function swallowError(error) {
@@ -33,7 +33,7 @@ function sassify(done) {
 function browser_sync(done) {
   browserSync.init({
     watch: true,
-    server: { baseDir: 'src' },
+    server: { baseDir: 'src/output' },
     port: 8080
   })
   done()
@@ -42,7 +42,7 @@ function browser_sync(done) {
 // Moves all the Bootstrap related JavaScript files into the js folder
 function bootstrapper(done) {
   return src(['node_modules/bootstrap/dist/js/bootstrap.js', 'node_modules/jquery/dist/jquery.js', 'node_modules/popper.js/dist/popper.js'])
-    .pipe(dest('src/assets/js'))
+    .pipe(dest('src/output/assets/js'))
     .pipe(browserSync.stream())
   done()
 }
@@ -53,17 +53,17 @@ function html() {
 }
 
 function images() {
-  return src('src/assets/images/**/*.+(png|jpg|gif|svg)')
+  return src('src/**/*.+(png|jpg|gif|svg)')
     .pipe(dest('dist/assets/images'))
 }
 
 function fonts() {
-  return src('src/assets/fonts/**/*')
+  return src('src/output/assets/fonts/**/*')
     .pipe(dest('dist/assets/fonts'))
 }
 
 function css() {
-  return src('src/assets/css/**/*.css')
+  return src('src/**/*.css')
     .pipe(dest('dist/assets/css/'))
 }
 
@@ -71,7 +71,7 @@ function js() {
   // The ordering is very important here!
   // First it moves all the js files
   // Second it overwrites the "scripts.js" file with the transpiled one
-  return src('src/assets/js/*.js')
+  return src('src/*.js')
     .pipe(dest('dist/assets/js/'))
 }
 
@@ -87,7 +87,7 @@ function clear_cache(done) {
 
 function watch_files(done) {
   watch('src/**/*.njk', nunjucks)
-  watch('src/assets/sass/**/*.scss', sassify)
+  watch('src/**/*.scss', sassify)
   watch('src/**/*.html', browserSync.reload)
   done()
 }
