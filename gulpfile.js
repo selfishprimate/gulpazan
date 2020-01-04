@@ -25,8 +25,8 @@ function sassify(done) {
       console.log(error.toString());
       this.emit('end');
     })
-    .pipe(dest('src/web/assets/css'))
     .pipe(sourcemaps.write())
+    .pipe(dest('src/web/assets/css'))
     .pipe(browserSync.reload({ stream: true }))
   done()
 }
