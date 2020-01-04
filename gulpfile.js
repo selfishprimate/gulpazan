@@ -12,19 +12,20 @@ function nunjucks(done) {
     .pipe(nunjucksRender({
       path: ["src/templates"]
     }))
-    .pipe(dest("src/output"))
+    .pipe(dest("src/web"))
   done()
 }
 
 // Sass compiler
 function sassify(done) {
-  return src('src/**/*.scss')
+  return src('src/web/assets/sass/**/*.scss')
     .pipe(sourcemaps.init())
     // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor. (nested, compact, expanded, compressed)
     .pipe(sass({ outputStyle: 'expanded' })).on('error', function swallowError(error) {
       console.log(error.toString());
       this.emit('end');
     })
+    .pipe(dest('src/web/assets/css'))
     .pipe(sourcemaps.write())
     .pipe(browserSync.reload({ stream: true }))
   done()
@@ -33,7 +34,7 @@ function sassify(done) {
 function browser_sync(done) {
   browserSync.init({
     watch: true,
-    server: { baseDir: 'src/output' },
+    server: { baseDir: 'src/web' },
     port: 8080
   })
   done()
@@ -42,28 +43,28 @@ function browser_sync(done) {
 // Moves all the Bootstrap related JavaScript files into the js folder
 function bootstrapper(done) {
   return src(['node_modules/bootstrap/dist/js/bootstrap.js', 'node_modules/jquery/dist/jquery.js', 'node_modules/popper.js/dist/popper.js'])
-    .pipe(dest('src/output/assets/js'))
+    .pipe(dest('src/web/assets/js'))
     .pipe(browserSync.stream())
   done()
 }
 
 function html() {
-  return src('src/*.html')
+  return src('src/web/*.html')
     .pipe(dest('dist'))
 }
 
 function images() {
-  return src('src/**/*.+(png|jpg|gif|svg)')
+  return src('src/web/assets/images/**/*.+(png|jpg|gif|svg)')
     .pipe(dest('dist/assets/images'))
 }
 
 function fonts() {
-  return src('src/output/assets/fonts/**/*')
+  return src('src/web/assets/fonts/**/*')
     .pipe(dest('dist/assets/fonts'))
 }
 
 function css() {
-  return src('src/**/*.css')
+  return src('src/web/assets/css/**/*.css')
     .pipe(dest('dist/assets/css/'))
 }
 
@@ -71,7 +72,7 @@ function js() {
   // The ordering is very important here!
   // First it moves all the js files
   // Second it overwrites the "scripts.js" file with the transpiled one
-  return src('src/*.js')
+  return src('src/web/assets/js/**/*.js')
     .pipe(dest('dist/assets/js/'))
 }
 
