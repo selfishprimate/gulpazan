@@ -4,7 +4,8 @@
   "description": "The easiest workflow for frontend development.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,14 @@
     "gulp-cache": "^1.0.2",
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4"
+    "gulp-sourcemaps": "^2.6.4",
+    "nodemon": "^2.0.2"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
     "browserslist": "^4.8.2",
     "caniuse-lite": "^1.0.30001017",
+    "express": "^4.17.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.15.0"
   }
