@@ -5,14 +5,15 @@ const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const del = require('del');
 const cache = require("gulp-cache");
+var data = require('gulp-data'); // This plugin calls the JSON data file.
+var fs = require('fs'); // Using for the JSON parsing...
 
 // Nunjucks HTML templating engine
 function nunjucks(done) {
   return src('src/pages/**/*.njk')
-    .pipe(nunjucksRender({
-      path: ["src/templates"]
-    }))
-    .pipe(dest("src/public"))
+    .pipe(data(function () { return JSON.parse(fs.readFileSync('src/public/assets/data/data.json')) }))
+    .pipe(nunjucksRender({ path: ['src/templates'] }))
+    .pipe(dest('src/public'))
   done()
 }
 
@@ -88,6 +89,7 @@ function clear_cache(done) {
 
 function watch_files(done) {
   watch('src/**/*.njk', nunjucks)
+  watch('src/**/*.json', nunjucks)
   watch('src/**/*.scss', sassify)
   watch('src/**/*.html', browserSync.reload)
   done()

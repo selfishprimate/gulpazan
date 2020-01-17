@@ -1,0 +1,52 @@
+{
+    "categories": [
+        {
+            "title": "PİYASA HABERLERİ",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "KAP HABERLERİ",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "TEKNOLOJİ HABERLERİ",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "KOBİ HABERLERİ",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "SON DAKİKA",
+            "dataName": "son-dakika"
+        },
+        {
+            "title": "HİSSE YORUMLARI",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "PİYASALAR",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "DÜNYA",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "KRİPTO PARA",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "BORSALAR",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "FİNANS HABERLERİ",
+            "dataName": "piyasa-haberleri"
+        },
+        {
+            "title": "MAGAZİN HABERLERİ",
+            "dataName": "magazin-haberleri"
+        }
+    ]
+}
