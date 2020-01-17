@@ -5,8 +5,8 @@ const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const del = require('del');
 const cache = require("gulp-cache");
-var data = require('gulp-data'); // This plugin calls the JSON data file.
-var fs = require('fs'); // Using for the JSON parsing...
+const data = require('gulp-data'); // This plugin calls the JSON data file.
+const fs = require('fs'); // Using for the JSON parsing...
 
 // Nunjucks HTML templating engine
 function nunjucks(done) {
