@@ -15,7 +15,7 @@ What prominent npm packages Gulpazan comes with when you install it...
 
 Cloning the repository: 
   
-    git clone https://github.com/selfishprimate/gulpazan.git` 
+    git clone https://github.com/selfishprimate/gulpazan.git
 
 Target the folder where Gulpazan is and type `npm install` and hit the enter to install all the dependencies that Gulpazan needs.
 
