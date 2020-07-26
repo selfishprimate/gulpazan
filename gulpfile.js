@@ -28,8 +28,12 @@ function sassify(done) {
     src("src/public/assets/sass/**/*.scss")
       .pipe(sourcemaps.init())
       // gulp-sass kullanarak Sass dosyasını CSS'e çeviriyor. (nested, compact, expanded, compressed)
-      .pipe(sass({ outputStyle: "expanded" }))
-      .on("error", function swallowError(error) {
+      .pipe(
+        sass({
+          outputStyle: "expanded",
+          includePaths: ["node_modules/gerillass/scss"]
+        })
+      ).on("error", function swallowError(error) {
         console.log(error.toString());
         this.emit("end");
       })

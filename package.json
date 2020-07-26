@@ -17,6 +17,7 @@
     "browser-sync": "^2.23.6",
     "del": "^5.1.0",
     "fs": "0.0.1-security",
+    "gerillass": "^1.0.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-cache": "^1.0.2",
